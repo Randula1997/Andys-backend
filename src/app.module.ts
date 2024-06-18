@@ -7,6 +7,7 @@ import { OrderModule } from './order/order.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { TimeslotModule } from './timeslot/timeslot.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     ServicesModule,
     OrderModule,
     AuthModule,
+    TimeslotModule
   ],
   controllers: [AppController],
   providers: [AppService],

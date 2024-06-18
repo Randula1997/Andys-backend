@@ -4,7 +4,7 @@ import { Document } from 'mongoose';
 
 export type ServiceDocument = Service & Document;
 
-@Schema()
+@Schema({ collection: 'services' })
 export class VehicleTypePrice {
   @Prop({ required: true })
   vehicleType: string;

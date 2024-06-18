@@ -3,13 +3,20 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { OrderService } from './order.service';
 import { OrderController } from './order.controller';
-import { OrderDetail, OrderSchema } from './schemas/order.schema';
+import { OrderSchema, Orders } from './schemas/order.schema';
+import { TimeSlot, TimeSlotSchema } from 'src/timeslot/schemas/timeslot.schema';
+import { TimeSlotController } from 'src/timeslot/timeslot.controller';
+import { TimeSlotService } from 'src/timeslot/timeslot.service';
+import { TimeslotModule } from 'src/timeslot/timeslot.module';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: OrderDetail.name, schema: OrderSchema }]),
+    MongooseModule.forFeature([
+      { name: Orders.name, schema: OrderSchema },
+    ]),
+    TimeslotModule,
   ],
   controllers: [OrderController],
-  providers: [OrderService],
+  providers: [OrderService ],
 })
 export class OrderModule {}

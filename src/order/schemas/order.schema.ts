@@ -1,29 +1,35 @@
 /* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
 
+export type OrderDocument = Orders & Document;
 
-Schema()
-export class OrderDetail {
-  @Prop()
-  readonly serviceCategory: string;
+@Schema()
+export class Orders {
+  @Prop({ required: true })
+  vehicleType: string;
 
-  @Prop()
-  readonly subCategory: string;
+  @Prop({ required: true })
+  subCategory: string;
 
-  @Prop()
-  readonly name: string;
+  @Prop({ required: true })
+  email: string;
 
-  @Prop()
-  readonly address: string
+  @Prop({ required: true })
+  name: string;
 
-  @Prop()
-  readonly city: string
-  
-  @Prop()
-  readonly contactNumber: number
+  @Prop({ required: true })
+  contactNumber: number;
 
-  @Prop()
-  readonly date: Date
+  @Prop({ required: true })
+  date: Date;
+
+  @Prop({
+    type: MongooseSchema.Types.ObjectId,
+    ref: 'TimeSlot',
+    required: true,
+  })
+  timeSlotId: MongooseSchema.Types.ObjectId;
 }
 
-export const OrderSchema = SchemaFactory.createForClass(OrderDetail);
+export const OrderSchema = SchemaFactory.createForClass(Orders);

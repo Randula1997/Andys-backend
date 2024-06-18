@@ -1,22 +1,19 @@
 /* eslint-disable prettier/prettier */
-import { IsString, IsNumber, IsDate } from 'class-validator';
+import { IsString, IsNumber, IsDate, IsEmail, IsMongoId } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateOrderDto {
   @IsString()
-  readonly taskCategory: string;
+  readonly vehicleType: string;
 
   @IsString()
   readonly subCategory: string;
 
+  @IsEmail()
+  readonly email: string
+
   @IsString()
   readonly name: string;
-
-  @IsString()
-  readonly address: string
-
-  @IsString()
-  readonly city: string
   
   @IsNumber() 
   readonly contactNumber: number
@@ -24,5 +21,9 @@ export class CreateOrderDto {
   @IsDate()
   @Type(() => Date) 
   readonly date: Date;
+
+  @IsMongoId()
+  readonly timeSlotId: string;
+
 }
 
