@@ -52,6 +52,6 @@ export class OrderService {
   }
 
   async findAll(): Promise<Orders[]> {
-    return this.orderModel.find().exec();
+    return this.orderModel.find().populate('timeSlotId').exec();
   }
 }
