@@ -19,7 +19,7 @@ export class Orders {
   name: string;
 
   @Prop({ required: true })
-  contactNumber: number;
+  contactNumber: string;
 
   @Prop({ required: true })
   date: Date;

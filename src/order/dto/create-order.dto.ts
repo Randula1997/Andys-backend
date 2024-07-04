@@ -21,8 +21,8 @@ export class CreateOrderDto {
   readonly name: string;
   
   @ApiProperty({ description: 'The contactNumber of User' })
-  @IsNumber() 
-  readonly contactNumber: number
+  @IsString() 
+  readonly contactNumber: string
 
   @ApiProperty({ description: 'The date of User' })
   @IsDate()
