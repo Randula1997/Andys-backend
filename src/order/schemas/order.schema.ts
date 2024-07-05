@@ -30,6 +30,9 @@ export class Orders {
     required: true,
   })
   timeSlotId: MongooseSchema.Types.ObjectId;
+
+  @Prop({ required: true, default: 'pending' })
+  status: string;  
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Orders);
