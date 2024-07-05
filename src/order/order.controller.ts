@@ -25,7 +25,7 @@ export class OrderController {
   @ApiOperation({ summary: 'Get all orders' })
   @ApiResponse({ status: 200, description: 'Orders retrieved successfully' })
   @Get()
-  async findAll(@Query() paginationDto: PaginationDto): Promise<Orders[]> {
+  async findAll(@Query() paginationDto: PaginationDto): Promise<{ orders: Orders[], totalCount: number }> {
     return this.orderService.findAll(paginationDto);
   }
 

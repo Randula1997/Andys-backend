@@ -53,15 +53,19 @@ export class OrderService {
     return savedOrder;
   }
 
-  async findAll(paginationDto: PaginationDto): Promise<Orders[]> {
+  async findAll(paginationDto: PaginationDto): Promise<{ orders: Orders[], totalCount: number }> {
     const { page, limit } = paginationDto;
     const skip = (page - 1) * limit;
-    return this.orderModel.find()
-      .sort({ date: -1 }) // Sort by date in descending order
-      .skip(skip)
-      .limit(limit)
-      .populate('timeSlotId')
-      .exec();
+    const orders = await this.orderModel.find()
+    .sort({ date: -1 }) // Sort by date in descending order
+    .skip(skip)
+    .limit(limit)
+    .populate('timeSlotId')
+    .exec();
+
+    const totalCount = await this.orderModel.countDocuments();
+
+    return { orders, totalCount };
   }
 
   async updateStatus(id: string, updateOrderStatusDto: UpdateOrderStatusDto): Promise<Orders> {
